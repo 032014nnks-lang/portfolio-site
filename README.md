@@ -33,6 +33,16 @@ npm run dev
 
 7. Connect the repository to Cloudflare Workers.
 
+Use these Cloudflare build settings:
+
+```text
+Build command: npm run build
+Deploy command: npx wrangler deploy
+Build output directory: dist
+```
+
+Do not run `npx astro add cloudflare` for this static assets setup. Add the Astro Cloudflare adapter only when the site needs SSR or dynamic API routes.
+
 For local deploys with Wrangler in a non-interactive environment, set `CLOUDFLARE_API_TOKEN` before running:
 
 ```sh
