@@ -37,9 +37,11 @@ Use these Cloudflare build settings:
 
 ```text
 Build command: npm run build
-Deploy command: npx wrangler deploy
+Deploy command: npm run deploy
 Build output directory: dist
 ```
+
+`dist/` is not committed to Git, so do not use `npx wrangler deploy` by itself unless the build step has already generated `dist/` in the same Cloudflare job.
 
 Do not run `npx astro add cloudflare` for this static assets setup. Add the Astro Cloudflare adapter only when the site needs SSR or dynamic API routes.
 
