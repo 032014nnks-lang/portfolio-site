@@ -1,10 +1,19 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
+import Gallery from "../../components/Gallery.astro";
+import { loadWorks } from "../../lib/works";
+
+const works = await loadWorks();
 ---
 
 <Layout>
   <main class="gallery-page">
     <Header title="Works" subtitle="Selected pieces" />
+    <section class="section-heading" id="works">
+      <p>Selected Works</p>
+      <h2>Works</h2>
+    </section>
+    <Gallery works={works} />
   </main>
 </Layout>

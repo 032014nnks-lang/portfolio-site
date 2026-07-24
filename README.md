@@ -1,44 +1,60 @@
-# Astro Starter Kit: Minimal
+# Portfolio Site Template
+
+Astro + microCMS portfolio template for illustrators and photographers.
+
+## Setup
+
+1. Use this template on GitHub.
+2. Install dependencies.
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+3. Copy `.env.example` to `.env`.
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+cp .env.example .env
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+4. Create a `works` API in microCMS.
+5. Set environment variables in `.env`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```env
+MICROCMS_SERVICE_DOMAIN=your-service-name
+MICROCMS_API_KEY=your-api-key
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+6. Start the local development server.
 
-## 🧞 Commands
+```sh
+npm run dev
+```
 
-All commands are run from the root of the project, from a terminal:
+7. Connect the repository to Cloudflare Workers.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Data
 
-## 👀 Want to learn more?
+If microCMS environment variables are not set, the site uses sample works from `src/data/sampleWorks.ts`.
+After `.env` is configured, works are loaded from microCMS at build time and Astro generates static HTML.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-# portfolio-site
+The current microCMS endpoint is configured in `src/lib/microcms.ts`.
+
+## Commands
+
+```sh
+npm install
+npm run dev
+npm run build
+npm run preview
+```
+
+## Do Not Commit
+
+These files and directories are ignored:
+
+- `node_modules/`
+- `dist/`
+- `.env`
+- `.wrangler/`
+- `.astro/`

@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { loadWorks } from "../../lib/works";
+import type { Work } from "../../types/portfolio";
+
+export async function getStaticPaths() {
+  const works = await loadWorks();
+
+  return works.map((work) => ({
+    params: { id: work.id },
+    props: { work },
+  }));
+}
+
+interface Props {
+  work: Work;
+}
+
+const { work } = Astro.props;
+const category = work.category ?? "Work";
+const year = work.year ?? "";
+const images = work.images.length > 0 ? work.images : [work.thumbnail];
+---
+
+<Layout>
+  <main class="work-detail-page">
+    <nav class="detail-nav" aria-label="Work navigation">
+      <a href="/works/">Works</a>
+      <a href="/">Home</a>
+    </nav>
+
+    <header class="work-detail-header">
+      <p>{category}{year && ` / ${year}`}</p>
+      <h1>{work.title}</h1>
+      {work.description && <div class="work-description">{work.description}</div>}
+    </header>
+
+    <section class="work-images" aria-label={`${work.title} images`}>
+      {images.map((image) => (
+        <img
+          src={image.url}
+          alt={work.title}
+          width={image.width}
+          height={image.height}
+          loading="lazy"
+        />
+      ))}
+    </section>
+  </main>
+</Layout>

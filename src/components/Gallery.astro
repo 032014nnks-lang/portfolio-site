@@ -1,11 +1,6 @@
 ---
 import WorkCard from "./WorkCard.astro";
-
-interface Work {
-  title: string;
-  author: string;
-  src: string;
-}
+import type { Work } from "../types/portfolio";
 
 interface Props {
   works: Work[];
@@ -16,6 +11,6 @@ const { works } = Astro.props;
 
 <section class="gallery-grid">
   {works.map((work) => (
-    <WorkCard title={work.title} author={work.author} src={work.src} />
+    <WorkCard work={work} />
   ))}
 </section>

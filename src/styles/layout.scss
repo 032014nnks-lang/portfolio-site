@@ -10,6 +10,7 @@ body {
   padding: 0;
   background: $bg;
   min-height: 100%;
+  scroll-behavior: smooth;
 }
 
 img {
@@ -21,45 +22,84 @@ img {
 body {
   position: relative;
   color: $text;
-  background-image:
-    radial-gradient(circle at 12% 14%, rgba(255, 255, 255, 0.5) 0 10%, transparent 11%),
-    radial-gradient(circle at 84% 26%, rgba(255, 255, 255, 0.45) 0 8%, transparent 9%),
-    repeating-linear-gradient(
-      -35deg,
-      rgba(255, 255, 255, 0.2) 0 14px,
-      rgba(255, 79, 161, 0.14) 14px 28px
-    );
+  background:
+    linear-gradient(90deg, rgba(23, 23, 23, 0.035) 1px, transparent 1px) 0 0 / 72px 72px,
+    $bg;
 }
 
 .gallery-page {
   max-width: $max-width;
   margin: 0 auto;
-  padding: 4rem 1.25rem 5rem;
+  padding: 1.5rem 1.25rem 4.5rem;
   position: relative;
 }
 
-.gallery-page::before {
-  content: "";
-  position: absolute;
-  inset: 1.25rem 0 auto;
-  height: 180px;
-  border-radius: 24px;
-  background: linear-gradient(100deg, rgba(255, 79, 161, 0.2), rgba(159, 247, 225, 0.24));
-  border: 3px dashed rgba(61, 32, 79, 0.3);
-  pointer-events: none;
-  z-index: -1;
+.work-detail-page {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4.5rem;
 }
 
 .gallery-header {
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
+}
+
+.intro {
+  max-width: 760px;
+  margin: 0 0 6rem auto;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid $line;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $line;
+}
+
+.profile-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  margin-top: 7rem;
+  padding: 2rem 0;
+  border-top: 1px solid $line;
+  border-bottom: 1px solid $line;
+}
+
+.contact-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $line;
 }
 
 @media (min-width: 900px) {
   .gallery-page {
-    padding-top: 5rem;
+    padding: 2rem 2rem 6rem;
   }
 
-  .gallery-page::before {
-    inset: 1.5rem 1.5rem auto;
+  .work-detail-page {
+    padding: 2rem 2rem 6rem;
+  }
+
+  .gallery-header {
+    margin-bottom: 4.5rem;
+  }
+
+  .profile-section {
+    grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1.2fr);
+    gap: 4rem;
+  }
+
+  .contact-section {
+    grid-template-columns: 0.7fr 1.2fr 1fr;
+    align-items: baseline;
   }
 }

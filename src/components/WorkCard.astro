@@ -1,15 +1,27 @@
 ---
+import type { Work } from "../types/portfolio";
+
 interface Props {
-  title: string;
-  author: string;
-  src: string;
+  work: Work;
 }
 
-const { title, author, src } = Astro.props;
+const { work } = Astro.props;
+const category = work.category ?? "Work";
+const year = work.year ?? "Year";
 ---
 
 <article class="gallery-item reveal">
-  <img src={src} alt={title} loading="lazy" />
-  <h2>{title}</h2>
-  <p>{author}</p>
+  <a href={`/works/${work.id}/`} aria-label={`${work.title} の詳細を見る`}>
+    <img
+      src={work.thumbnail.url}
+      alt={work.title}
+      width={work.thumbnail.width}
+      height={work.thumbnail.height}
+      loading="lazy"
+    />
+    <div class="work-meta">
+      <h2>{work.title}</h2>
+      <p>{category} / {year}</p>
+    </div>
+  </a>
 </article>

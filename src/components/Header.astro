@@ -2,12 +2,23 @@
 interface Props {
   title: string;
   subtitle?: string;
+  description?: string;
 }
 
-const { title, subtitle } = Astro.props;
+const { title, subtitle, description } = Astro.props;
 ---
 
 <header class="gallery-header reveal">
-  <h1>{title}</h1>
-  {subtitle && <p>{subtitle}</p>}
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/">Home</a>
+    <a href="#works">Works</a>
+    <a href="#profile">Profile</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <p class="eyebrow">Portfolio</p>
+  <div class="hero-copy">
+    <h1>{title}</h1>
+    {subtitle && <p class="subtitle">{subtitle}</p>}
+    {description && <p class="description">{description}</p>}
+  </div>
 </header>

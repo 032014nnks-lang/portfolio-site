@@ -2,20 +2,46 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Gallery from "../components/Gallery.astro";
+import { loadWorks } from "../lib/works";
 
-const works = [
-  { title: "Morning Silence", author: "Photo", src: "https://picsum.photos/id/1011/900/1100" },
-  { title: "Still Air", author: "Illustration", src: "https://picsum.photos/id/1025/900/1100" },
-  { title: "White Room", author: "Photo", src: "https://picsum.photos/id/1035/900/1100" },
-  { title: "Low Tide", author: "Illustration", src: "https://picsum.photos/id/1040/900/1100" },
-  { title: "Quiet Street", author: "Photo", src: "https://picsum.photos/id/1050/900/1100" },
-  { title: "Soft Noon", author: "Illustration", src: "https://picsum.photos/id/1060/900/1100" },
-];
+const works = await loadWorks();
 ---
 
 <Layout>
   <main class="gallery-page">
-    <Header title="Quiet Gallery" subtitle="Photographer & Illustrator" />
+    <Header
+      title="Portfolio Sample"
+      subtitle="Illustration"
+      description="ポートフォリオサイトのインフォメーション"
+    />
+
+    <section class="intro reveal" aria-label="Statement">
+      <p>
+        Editorial illustration, portrait photography, still-life studies and personal works.
+        Images are arranged with a restrained rhythm so the work can be seen without noise.
+      </p>
+    </section>
+
+    <section class="section-heading" id="works">
+      <p>Selected Works</p>
+      <h2>Works</h2>
+    </section>
     <Gallery works={works} />
+
+    <section class="profile-section reveal" id="profile">
+      <div>
+        <p class="section-label">Profile</p>
+        <h2>Illustrator / Photographer</h2>
+      </div>
+      <p>
+        kodawariwokokonituduru
+      </p>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <p>Contact</p>
+      <a href="mailto:hello@example.com">hello@example.com</a>
+      <span>Instagram / X / Commission</span>
+    </section>
   </main>
 </Layout>
