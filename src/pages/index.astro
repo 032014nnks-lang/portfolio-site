@@ -1,17 +1,21 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Gallery from "../components/Gallery.astro";
 
+const works = [
+  { title: "Morning Silence", author: "Photo", src: "https://picsum.photos/id/1011/900/1100" },
+  { title: "Still Air", author: "Illustration", src: "https://picsum.photos/id/1025/900/1100" },
+  { title: "White Room", author: "Photo", src: "https://picsum.photos/id/1035/900/1100" },
+  { title: "Low Tide", author: "Illustration", src: "https://picsum.photos/id/1040/900/1100" },
+  { title: "Quiet Street", author: "Photo", src: "https://picsum.photos/id/1050/900/1100" },
+  { title: "Soft Noon", author: "Illustration", src: "https://picsum.photos/id/1060/900/1100" },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <main class="gallery-page">
+    <Header title="Quiet Gallery" subtitle="Photographer & Illustrator" />
+    <Gallery works={works} />
+  </main>
+</Layout>

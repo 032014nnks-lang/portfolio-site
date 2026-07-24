@@ -1,0 +1,41 @@
+@use "./variables" as *;
+
+html,
+body {
+  color: $text;
+  font-family: $body;
+}
+
+.gallery-header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-family: $heading;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: $accent-strong;
+  text-shadow: 2px 2px 0 $paper, 4px 4px 0 rgba(61, 32, 79, 0.2);
+}
+
+.gallery-header p {
+  margin: 0.9rem 0 0;
+  color: $muted;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.gallery-item h2 {
+  margin: 1rem 0 0.4rem;
+  font-family: $heading;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+}
+
+.gallery-item p {
+  margin: 0;
+  color: $muted;
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+}

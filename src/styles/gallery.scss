@@ -1,0 +1,105 @@
+@use "./variables" as *;
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 2.75rem 2rem;
+}
+
+.gallery-item {
+  overflow: hidden;
+  background: linear-gradient(165deg, $paper, #fff0f8);
+  border: 3px solid $outline;
+  border-radius: 18px;
+  padding: 0.85rem;
+  box-shadow: 8px 8px 0 $shadow;
+  transform: rotate(-0.55deg);
+}
+
+.gallery-item:nth-child(even) {
+  transform: rotate(0.55deg);
+}
+
+.gallery-item:nth-child(3n) {
+  border-color: $accent-strong;
+}
+
+.gallery-item img {
+  border-radius: 10px;
+  border: 2px solid rgba(61, 32, 79, 0.28);
+  transition: transform 0.35s ease, filter 0.35s ease, opacity 0.35s ease;
+  filter: saturate(1.05) contrast(1.05);
+}
+
+.gallery-item:hover img {
+  opacity: 0.92;
+  transform: scale(1.03);
+  filter: saturate(1.15) contrast(1.09);
+}
+
+.gallery-item h2,
+.gallery-item p {
+  padding-left: 0.3rem;
+}
+
+.gallery-header {
+  position: relative;
+  display: inline-block;
+  padding: 1.1rem 1.2rem 1.25rem;
+  border-radius: 16px;
+  background: linear-gradient(120deg, rgba(255, 247, 251, 0.9), rgba(255, 228, 137, 0.4));
+  border: 3px solid $outline;
+  box-shadow: 10px 10px 0 $shadow;
+}
+
+.gallery-header::after {
+  content: "OPEN";
+  position: absolute;
+  right: -0.7rem;
+  top: -0.85rem;
+  padding: 0.28rem 0.62rem;
+  border-radius: 999px;
+  border: 2px solid $outline;
+  background: $mint;
+  color: $outline;
+  font-family: $heading;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.reveal {
+  opacity: 1;
+}
+
+@media (min-width: 900px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 899px) {
+  .gallery-item,
+  .gallery-item:nth-child(even),
+  .gallery-item:nth-child(3n) {
+    transform: rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(6px);
+      animation: fade-up 0.6s ease both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 20%;
+    }
+  }
+}
+
+@keyframes fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
