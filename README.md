@@ -33,12 +33,20 @@ npm run dev
 
 7. Connect the repository to Cloudflare Workers.
 
+For local deploys with Wrangler in a non-interactive environment, set `CLOUDFLARE_API_TOKEN` before running:
+
+```sh
+npm run deploy
+```
+
 ## Data
 
 If microCMS environment variables are not set, the site uses sample works from `src/data/sampleWorks.ts`.
 After `.env` is configured, works are loaded from microCMS at build time and Astro generates static HTML.
 
 The current microCMS endpoint is configured in `src/lib/microcms.ts`.
+
+Cloudflare Workers static assets are configured in `wrangler.jsonc`. Change `name` to the actual Worker name before deploying.
 
 ## Commands
 
