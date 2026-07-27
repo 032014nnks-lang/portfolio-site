@@ -6,22 +6,28 @@ interface Props {
 }
 
 const { work } = Astro.props;
-const category = work.category ?? "Work";
-const year = work.year ?? "Year";
+const uploadedAt = new Intl.DateTimeFormat("ja-JP", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+}).format(new Date(work.updatedAt));
+const meta = `Work / ${uploadedAt}`;
 ---
 
 <article class="gallery-item reveal">
   <a href={`/works/${work.id}/`} aria-label={`${work.title} の詳細を見る`}>
     <img
-      src={work.thumbnail.url}
-      alt={work.title}
-      width={work.thumbnail.width}
-      height={work.thumbnail.height}
+      src={work.image.url}
+      alt={work.image.alt ?? work.title}
+      width={work.image.width}
+      height={work.image.height}
       loading="lazy"
     />
     <div class="work-meta">
       <h2>{work.title}</h2>
-      <p>{category} / {year}</p>
+      <p>{meta}</p>
     </div>
   </a>
 </article>

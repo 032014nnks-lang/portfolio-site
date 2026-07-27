@@ -1,13 +1,13 @@
-import type { MicroCMSImage } from "microcms-js-sdk";
-
 export type Work = {
   id: string;
   title: string;
-  slug: string;
-  thumbnail: MicroCMSImage;
-  images: MicroCMSImage[];
-  category?: string;
-  description?: string;
-  year?: string;
-  order?: number;
+  image: {
+    url: string;
+    width: number;
+    height: number;
+    alt?: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+  publishedAt?: string;
 };

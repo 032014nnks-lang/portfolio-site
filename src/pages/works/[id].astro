@@ -17,9 +17,14 @@ interface Props {
 }
 
 const { work } = Astro.props;
-const category = work.category ?? "Work";
-const year = work.year ?? "";
-const images = work.images.length > 0 ? work.images : [work.thumbnail];
+const uploadedAt = new Intl.DateTimeFormat("ja-JP", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+}).format(new Date(work.updatedAt));
+const meta = `Work / ${uploadedAt}`;
 ---
 
 <Layout>
@@ -30,21 +35,18 @@ const images = work.images.length > 0 ? work.images : [work.thumbnail];
     </nav>
 
     <header class="work-detail-header">
-      <p>{category}{year && ` / ${year}`}</p>
+      <p>{meta}</p>
       <h1>{work.title}</h1>
-      {work.description && <div class="work-description">{work.description}</div>}
     </header>
 
     <section class="work-images" aria-label={`${work.title} images`}>
-      {images.map((image) => (
-        <img
-          src={image.url}
-          alt={work.title}
-          width={image.width}
-          height={image.height}
-          loading="lazy"
-        />
-      ))}
+      <img
+        src={work.image.url}
+        alt={work.image.alt ?? work.title}
+        width={work.image.width}
+        height={work.image.height}
+        loading="lazy"
+      />
     </section>
   </main>
 </Layout>

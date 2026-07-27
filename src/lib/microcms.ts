@@ -1,5 +1,5 @@
 import { createClient } from "microcms-js-sdk";
-import type { MicroCMSImage } from "microcms-js-sdk";
+import type { MicroCMSDate, MicroCMSImage } from "microcms-js-sdk";
 import type { Work } from "../types/portfolio";
 
 const worksEndpoint = "addcontents";
@@ -14,28 +14,32 @@ export const microcmsClient =
       })
     : undefined;
 
-type WorkContent = Partial<Work> & {
+type WorkContent = MicroCMSDate & {
   id: string;
+  title?: string;
   contents?: MicroCMSImage;
+  updated?: string;
 };
 
 const toWork = (content: WorkContent): Work => {
-  const thumbnail = content.thumbnail ?? content.contents;
+  const image = content.contents;
 
-  if (!thumbnail) {
+  if (!image) {
     throw new Error(`作品「${content.id}」に画像フィールドが設定されていません。`);
   }
 
   return {
     id: content.id,
     title: content.title ?? "Untitled Work",
-    slug: content.slug ?? content.id,
-    thumbnail,
-    images: content.images?.length ? content.images : [thumbnail],
-    category: content.category,
-    description: content.description,
-    year: content.year,
-    order: content.order,
+    image: {
+      url: image.url,
+      width: image.width,
+      height: image.height,
+      alt: content.title,
+    },
+    createdAt: content.createdAt,
+    updatedAt: content.updated ?? content.updatedAt,
+    publishedAt: content.publishedAt,
   };
 };
 
@@ -48,7 +52,7 @@ export async function getWorks(): Promise<Work[]> {
     endpoint: worksEndpoint,
     queries: {
       limit: 100,
-      orders: "order",
+      orders: "-updated",
     },
   });
 
